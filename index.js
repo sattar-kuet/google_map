@@ -5,9 +5,11 @@ function initMap(){
 	}
 	map = new google.maps.Map(document.getElementById("map"), options);
 
-    var riders = [
+   var riders = [
         {
           name: 'Abdus sattar Bhuiyan',
+          lat: 23.7812,
+          lng: 90.4039,
           image: 'images/sattar.png',
           activity_log: [
              {message:'Assign Abdus sattar to pickup - DM45454', time: ' 24 hours ago'},
@@ -16,6 +18,8 @@ function initMap(){
              ]
         },
         { name: 'সজিব আলি',
+          lat: 23.7882,
+          lng: 90.4009,
           image: 'images/sajib.jpg',
           activity_log: [
              {message:'Assign Abdus sattar to pickup - DM45454', time: ' 1 month ago'},
@@ -26,7 +30,14 @@ function initMap(){
     ];
 
 for(var i=0; i< riders.length; i++ ){
-	alert(riders[i].name)
+	 var rider_activity_info = '<h2>'+riders[i].name+'</h2>';
+
+     rider_activity_info += '<ul>';
+     rider_activity_info +='<li><strong>DM45454</strong> Assign to pickup <span>24 hours ago</span></li>';
+     rider_activity_info +='<li><strong>DM45454</strong> Pickup done <span>12 hours ago</span></li>';
+     rider_activity_info +='<li><strong>DM45454</strong> delivered <span>20 minutes ago</span></li>';
+     rider_activity_info +='</ul>';
+     addMarker({location: {lat:riders[i].lat, lng:riders[i].lng}, icon:riders[i].image, activity_info: rider_activity_info});
 }
     
     var rider_activity_info = '<h2> Abdus Sattar Bhuiyan</h2>';
@@ -39,7 +50,7 @@ for(var i=0; i< riders.length; i++ ){
 
 	
     
-    addMarker({location: {lat:23.7812, lng:90.4039}, icon:'images/sattar.png', activity_info: rider_activity_info});
+    //addMarker({location: {lat:23.7812, lng:90.4039}, icon:'images/sattar.png', activity_info: rider_activity_info});
 
 	function addMarker(property){
 		const marker = new google.maps.Marker({
